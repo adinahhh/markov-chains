@@ -1,6 +1,6 @@
 """Generate Markov text from text files."""
 
-from random import choice
+# from random import choice
 
 
 def open_and_read_file(file_path):
@@ -53,12 +53,10 @@ def make_chains(text_string):
 
     # print(list_tuples)
 
-# make dictionary
-    value = []
 # correct value
 
     # for loop thru all tuples with duplicates
-    for i in range(len(list_tuples) - 2):
+    for i in range(len(list_tuples) - 1):
         if list_tuples[i] in chains:
             chains[list_tuples[i]] += [list_tuples[i + 1][1]]
         else:
@@ -74,11 +72,42 @@ def make_chains(text_string):
 def make_text(chains):
     """Return text from chains."""
 
-    make_chains()
+    from random import choice
 
-    words = []
+    text = make_chains('chains')
 
     # your code goes here
+    words = []
+    dict2 = {}
+
+    # print(chains)
+
+# looping thru dictionary; make a list with second key and all possible values
+    # for key in text:
+    #     if key[1] not in dict2:
+    #         dict2[key[1]] = text[key]
+    #     else:
+    #         dict2[key[1]] += text[key]
+    # words.append
+
+    # take bigram and print out/return random choice for value
+    for key in chains:
+        random_value = choice(chains[key])
+        bigram = (key[1], random_value)
+
+        # for bigram in chains:
+        if bigram in chains:
+            words.append(random_value)
+        else:
+            words.append("am")
+
+    #  for ('Sam, 'I') in chains:
+    #       random_value = 'am'
+    #       bigram = ('I', 'am')
+    #   if ('I, 'am') in chains:
+    #       words.append('am')
+    # print(chains)
+    print(words)
 
     return " ".join(words)
 
@@ -95,4 +124,3 @@ chains = make_chains(input_text)
 random_text = make_text(chains)
 
 print(random_text)
-
