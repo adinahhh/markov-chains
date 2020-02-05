@@ -78,36 +78,33 @@ def make_text(chains):
 
     # your code goes here
     words = []
-    dict2 = {}
 
     # print(chains)
 
-# looping thru dictionary; make a list with second key and all possible values
-    # for key in text:
-    #     if key[1] not in dict2:
-    #         dict2[key[1]] = text[key]
+    # # take bigram and print out/return random choice for value
+    
+    # for key in chains:
+    #     random_value = choice(chains[key])
+    #     bigram = (key[1], random_value)
+
+    # # for bigram in chains:
+    #     if bigram in chains:
+    #         words.append(random_value)
     #     else:
-    #         dict2[key[1]] += text[key]
-    # words.append
+    #         words.append("am")
 
-    # take bigram and print out/return random choice for value
-    for key in chains:
-        random_value = choice(chains[key])
-        bigram = (key[1], random_value)
+    # choose bigram
+    # from chains pick random a value
+    # if value is am-- ends
 
-        # for bigram in chains:
-        if bigram in chains:
-            words.append(random_value)
-        else:
-            words.append("am")
+    bigram = choice(list(chains.keys()))
+    words.append(bigram)
+    random_value = choice(chains[bigram])
 
-    #  for ('Sam, 'I') in chains:
-    #       random_value = 'am'
-    #       bigram = ('I', 'am')
-    #   if ('I, 'am') in chains:
-    #       words.append('am')
-    # print(chains)
-    print(words)
+    print(random_value)
+    while random_value is not None:
+        words.append(random_value)
+        #reassign bigram and close while loop
 
     return " ".join(words)
 
