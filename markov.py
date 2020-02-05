@@ -51,25 +51,30 @@ def make_chains(text_string):
     for i in range(len(split_string) - 1):
         list_tuples.append((split_string[i], split_string[i + 1]))
 
-    print(list_tuples)
+    # print(list_tuples)
 
 # make dictionary
     value = []
-    for key_tuple in list_tuples:
-        chains[key_tuple] = value
 # correct value
 
     # for loop thru all tuples with duplicates
-    for i in range(len(list_tuples) - 1):
-        # if list_tuples[i] == list_tuples[i][0]:
-            chains.get(list_tuples[i], list_tuples[i + 1][0])
-            # ***need to update the value of value lol ***
+    for i in range(len(list_tuples) - 2):
+        if list_tuples[i] in chains:
+            chains[list_tuples[i]] += [list_tuples[i + 1][1]]
+        else:
+            chains[list_tuples[i]] = [list_tuples[i + 1][1]]
 
-    print(chains)
+    return chains
+
+    #  print(chains)
+    # for key in chains:
+    #     print(key, chains[key])
 
 
 def make_text(chains):
     """Return text from chains."""
+
+    make_chains()
 
     words = []
 
@@ -90,3 +95,4 @@ chains = make_chains(input_text)
 random_text = make_text(chains)
 
 print(random_text)
+
